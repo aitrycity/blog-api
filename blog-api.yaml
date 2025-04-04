@@ -1,0 +1,54 @@
+openapi: 3.0.0
+info:
+  title: Blog API
+  description: Простой API для блога
+  version: 1.0.0
+
+servers:
+  - url: https://api.myblog.com/v1
+
+paths:
+  /posts:
+    get:
+      summary: Список всех постов
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example: 
+                - { id: 1, title: "Мой первый пост", author: "Аня" }
+                - { id: 2, title: "Как научиться Git", author: "Иван" }
+
+    post:
+      summary: Создать пост
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                author:
+                  type: string
+      responses:
+        '201':
+          description: Пост создан
+
+  /posts/{id}:
+    get:
+      summary: Получить пост по ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              example: { id: 1, title: "Мой первый пост", author: "Аня" }
