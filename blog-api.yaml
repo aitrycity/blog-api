@@ -52,3 +52,15 @@ paths:
           content:
             application/json:
               example: { id: 1, title: "Мой первый пост", author: "Аня" }
+    # Добавила DELETE /posts/{id}
+    delete:
+        summary: Удалить пост
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          '204':
+            description: Пост удалён
